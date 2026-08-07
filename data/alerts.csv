@@ -75,3 +75,11 @@ H08048,2026-07-29T08:53:00,LINE3-M02,H,1.0,High,301.4,312.0,1267,24.5,161,3250.7
 L08049,2026-07-29T08:56:00,LINE1-M02,L,0.011,Low,301.0,311.2,1898,25.0,163,4969.0,10.2,,,,,False
 H08048,2026-07-29T08:53:00,LINE3-M02,H,1.0,High,301.4,312.0,1267,24.5,161,3250.7,10.6,,"Most consistent with a Power Failure (PWF): the computed power output is low at 3251 W, below the 3500 W threshold, and power is the top ML driver. Tool wear is elevated (161 min) and torque is moderate, which likely contributes to inefficiency but does not yet meet tool-wear or overstrain failure thresholds.","Inspect and service the spindle/motor drive to restore power (e.g., check drive output/current limits, belt/coupling slip, and electrical supply) and verify power returns to ≥3500 W before continuing the batch.",High,False
 L08049,2026-07-29T08:56:00,LINE1-M02,L,0.011,Low,301.0,311.2,1898,25.0,163,4969.0,10.2,,,,,False
+H08050,2026-07-29T08:59:00,LINE1-M01,H,0.014,Low,300.4,310.0,1313,32.5,168,4468.7,9.6,,,,,False
+H08050,2026-07-29T08:59:00,LINE1-M01,H,0.014,Low,300.4,310.0,1313,32.5,168,4468.7,9.6,,,,,False
+H08051,2026-07-29T09:02:00,LINE1-M01,H,0.018,Low,299.6,311.8,1871,22.9,173,4486.8,12.2,,,,,False
+H08051,2026-07-29T09:02:00,LINE1-M01,H,0.018,Low,299.6,311.8,1871,22.9,173,4486.8,12.2,,,,,False
+L08052,2026-07-29T09:07:00,LINE3-M01,L,0.006,Low,303.5,314.4,1459,34.7,175,5301.7,10.9,,,,,False
+L08052,2026-07-29T09:07:00,LINE3-M01,L,0.006,Low,303.5,314.4,1459,34.7,175,5301.7,10.9,,,,,False
+M08053,2026-07-29T09:09:00,LINE3-M01,M,0.002,Low,298.8,309.7,1456,44.3,178,6754.5,10.9,,,,,False
+M08053,2026-07-29T09:09:00,LINE3-M01,M,0.002,Low,298.8,309.7,1456,44.3,178,6754.5,10.9,,,,,False

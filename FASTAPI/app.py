@@ -16,6 +16,7 @@ import traceback
 from contextlib import asynccontextmanager
 from datetime import datetime
 from typing import List, Optional
+import joblib
 
 from fastapi import FastAPI, HTTPException, Query
 from pydantic import BaseModel
@@ -55,6 +56,19 @@ class Event(Base):
 
 Base.metadata.create_all(bind=engine)
 
+# --- RF Model Loading ---------------------------------------------------
+rf_cat, le_cat, rf_sev, le_sev = None, None, None, None
+try:
+    import os
+    # Load models from local path
+    rf_cat = joblib.load("./rf_category_model.joblib")
+    le_cat = joblib.load("./le_category.joblib")
+    rf_sev = joblib.load("./rf_severity_model.joblib")
+    le_sev = joblib.load("./le_severity.joblib")
+    print("[startup] Random Forest models loaded successfully.")
+except Exception as e:
+    print(f"[startup] FAILED to load Random Forest models: {e}")
+
 
 # --- Pydantic response schema --------------------------------------------
 
@@ -74,6 +88,21 @@ class EventOut(BaseModel):
 
     class Config:
         from_attributes = True
+
+
+class PredictRequest(BaseModel):
+    temperature: float
+    vibration: float
+    humidity: float
+    pressure: float
+    rotations_per_minute: float
+
+
+class PredictResponse(BaseModel):
+    predicted_failure_category: str
+    predicted_severity: str
+    failure_category_probability: float
+    severity_probability: float
 
 
 # --- storage helper --------------------------------------------------------
@@ -234,3 +263,42 @@ def latest_20_machines():
         return events
     finally:
         db.close()
+
+
+@app.post("/predict", response_model=PredictResponse, tags=["ML"])
+def predict(req: PredictRequest):
+    """
+    Predicts the failure category and severity based on sensor inputs 
+    using the trained Random Forest models.
+    """
+    if rf_cat is None or rf_sev is None:
+        raise HTTPException(status_code=503, detail="Random Forest models are not loaded on the server.")
+    
+    try:
+        # Prepare input features
+        features = [[
+            req.temperature,
+            req.vibration,
+            req.humidity,
+            req.pressure,
+            req.rotations_per_minute
+        ]]
+        
+        # Predict failure category
+        cat_idx = int(rf_cat.predict(features)[0])
+        cat_proba = float(rf_cat.predict_proba(features)[0][cat_idx])
+        pred_cat = str(le_cat.inverse_transform([cat_idx])[0])
+
+        # Predict severity
+        sev_idx = int(rf_sev.predict(features)[0])
+        sev_proba = float(rf_sev.predict_proba(features)[0][sev_idx])
+        pred_sev = str(le_sev.inverse_transform([sev_idx])[0])
+
+        return PredictResponse(
+            predicted_failure_category=pred_cat,
+            predicted_severity=pred_sev,
+            failure_category_probability=cat_proba,
+            severity_probability=sev_proba
+        )
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Prediction error: {str(e)}")
