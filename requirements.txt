@@ -1,0 +1,10 @@
+streamlit
+langgraph
+google-genai
+pandas
+numpy
+scikit-learn
+joblib
+requests
+dotenv
+langchain_openai

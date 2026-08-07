@@ -1,0 +1,77 @@
+batch_id,timestamp,machine_id,product_type,risk_score,risk_level,air_temp_K,process_temp_K,rpm,torque_Nm,tool_wear_min,power_W,temp_diff,deviated_params,probable_cause,recommended_action,confidence,needs_human_review
+H08001,2026-07-29T06:00:00,LINE2-M02,H,0.002,Low,298.7,309.4,1474,40.4,5,6236.0,10.7,,,,,False
+H08002,2026-07-29T06:04:00,LINE2-M02,H,0.0,Low,303.1,312.9,1552,42.3,10,6874.8,9.8,,,,,False
+M08003,2026-07-29T06:09:00,LINE1-M02,M,0.995,High,300.9,310.3,1413,19.8,13,2929.8,9.4,,"Most evidence points to a Power Failure (PWF): the computed power output is 2930 W, which is below the normal 3500–9000 W range, and power is the top ML contributor. Other known failure modes are not met (tool wear is low, rpm is not below the HDF cutoff, and overstrain is far under its threshold).","Stop the machine and have maintenance inspect and restore the spindle/motor drive power delivery (e.g., check motor/drive output and electrical supply) before continuing the batch.",High,False
+H08004,2026-07-29T06:13:00,LINE3-M01,H,0.0,Low,299.3,309.9,1423,42.9,18,6392.8,10.6,,,,,False
+L08005,2026-07-29T06:15:00,LINE3-M01,L,0.005,Low,304.0,313.9,1583,51.4,20,8520.6,9.9,,,,,False
+M08006,2026-07-29T06:18:00,LINE2-M01,M,0.002,Low,300.1,310.2,1839,27.8,23,5353.7,10.1,,,,,False
+L08007,2026-07-29T06:23:00,LINE3-M01,L,0.996,High,302.4,310.5,1876,53.2,25,10451.4,8.1,,"Most likely Power Failure (PWF): computed power output is 10,451 W, which is above the 9,000 W upper bound and is the strongest contributing feature. Tool wear and torque are elevated contributors but do not meet the Tool Wear Failure or Overstrain thresholds, and Heat Dissipation Failure conditions are not met due to high rpm.","Immediately reduce load to bring power below 9,000 W by lowering spindle/rotational speed setpoint (or feed rate if linked) and re-run a short verification cycle to confirm power returns to the 3,500–9,000 W range before continuing the batch.",High,False
+H08008,2026-07-29T06:25:00,LINE2-M01,H,0.03,Low,296.7,306.1,1535,54.0,30,8680.2,9.4,,,,,False
+H08009,2026-07-29T06:31:00,LINE3-M01,H,0.002,Low,296.7,305.9,1607,36.2,35,6091.9,9.2,,,,,False
+H08010,2026-07-29T06:36:00,LINE3-M02,H,0.958,High,295.9,303.9,1236,49.4,40,6394.0,8.0,Process temperature [K],"Most consistent with Heat Dissipation Failure (HDF): the temperature differential is low (8.0 K below the 8.6 K threshold) and rotational speed is also low (1236 rpm), indicating inadequate heat removal. Power and overstrain are within their normal ranges and tool wear is far from the TWF band, so they are more likely contributing risk factors than the direct failure trigger.",Increase spindle speed to at least 1380 rpm (or adjust the machine program/feed settings to raise rpm) to restore adequate heat dissipation before continuing this batch.,High,False
+H08011,2026-07-29T06:40:00,LINE3-M02,H,0.0,Low,299.2,310.1,1514,40.6,45,6437.0,10.9,,,,,False
+M08012,2026-07-29T06:42:00,LINE3-M02,M,0.032,Low,299.7,308.3,1448,45.6,48,6914.5,8.6,,,,,False
+M08013,2026-07-29T06:45:00,LINE3-M01,M,0.005,Low,301.0,313.5,1375,42.6,51,6134.0,12.5,,,,,False
+M08014,2026-07-29T06:47:00,LINE3-M02,M,0.005,Low,300.9,311.5,1275,50.0,54,6675.9,10.6,,,,,False
+L08015,2026-07-29T06:49:00,LINE3-M01,L,0.101,Low,300.5,311.0,1276,27.0,56,3607.8,10.5,,,,,False
+M08016,2026-07-29T06:51:00,LINE1-M01,M,0.0,Low,301.6,312.3,1535,41.1,59,6606.6,10.7,,,,,False
+H08017,2026-07-29T06:54:00,LINE3-M02,H,0.109,Low,300.4,311.2,2262,17.2,64,4074.3,10.8,,,,,False
+M08018,2026-07-29T06:58:00,LINE2-M01,M,0.007,Low,300.0,311.8,1353,55.1,67,7806.9,11.8,,,,,False
+L08019,2026-07-29T07:03:00,LINE2-M02,L,0.001,Low,305.8,316.3,1690,41.0,69,7256.0,10.5,"Air temperature [K],Process temperature [K]",,,,False
+L08020,2026-07-29T07:08:00,LINE1-M01,L,0.001,Low,298.6,309.2,1168,46.5,71,5687.5,10.6,,,,,False
+M08021,2026-07-29T07:11:00,LINE3-M01,M,0.003,Low,302.4,312.3,1326,44.6,74,6193.1,9.9,,,,,False
+M08021,2026-07-29T07:11:00,LINE3-M01,M,0.003,Low,302.4,312.3,1326,44.6,74,6193.1,9.9,,,,,False
+M08021,2026-07-29T07:11:00,LINE3-M01,M,0.003,Low,302.4,312.3,1326,44.6,74,6193.1,9.9,,,,,False
+H08022,2026-07-29T07:17:00,LINE3-M01,H,0.008,Low,300.4,309.6,1168,43.4,79,5308.4,9.2,,,,,False
+H08022,2026-07-29T07:17:00,LINE3-M01,H,0.008,Low,300.4,309.6,1168,43.4,79,5308.4,9.2,,,,,False
+H08022,2026-07-29T07:17:00,LINE3-M01,H,0.008,Low,300.4,309.6,1168,43.4,79,5308.4,9.2,,,,,False
+H08022,2026-07-29T07:17:00,LINE3-M01,H,0.008,Low,300.4,309.6,1168,43.4,79,5308.4,9.2,,,,,False
+M08023,2026-07-29T07:22:00,LINE1-M02,M,0.001,Low,299.2,308.5,1725,37.1,82,6701.8,9.3,,,,,False
+M08023,2026-07-29T07:22:00,LINE1-M02,M,0.001,Low,299.2,308.5,1725,37.1,82,6701.8,9.3,,,,,False
+M08023,2026-07-29T07:22:00,LINE1-M02,M,0.001,Low,299.2,308.5,1725,37.1,82,6701.8,9.3,,,,,False
+M08023,2026-07-29T07:22:00,LINE1-M02,M,0.001,Low,299.2,308.5,1725,37.1,82,6701.8,9.3,,,,,False
+M08024,2026-07-29T07:25:00,LINE2-M01,M,0.001,Low,301.7,311.1,1761,27.3,85,5034.4,9.4,,,,,False
+M08024,2026-07-29T07:25:00,LINE2-M01,M,0.001,Low,301.7,311.1,1761,27.3,85,5034.4,9.4,,,,,False
+M08024,2026-07-29T07:25:00,LINE2-M01,M,0.001,Low,301.7,311.1,1761,27.3,85,5034.4,9.4,,,,,False
+M08024,2026-07-29T07:25:00,LINE2-M01,M,0.001,Low,301.7,311.1,1761,27.3,85,5034.4,9.4,,,,,False
+L08025,2026-07-29T07:30:00,LINE1-M02,L,0.029,Low,301.5,312.0,1168,29.0,87,3547.1,10.5,,,,,False
+L08025,2026-07-29T07:30:00,LINE1-M02,L,0.029,Low,301.5,312.0,1168,29.0,87,3547.1,10.5,,,,,False
+L08025,2026-07-29T07:30:00,LINE1-M02,L,0.029,Low,301.5,312.0,1168,29.0,87,3547.1,10.5,,,,,False
+L08025,2026-07-29T07:30:00,LINE1-M02,L,0.029,Low,301.5,312.0,1168,29.0,87,3547.1,10.5,,,,,False
+L08026,2026-07-29T07:33:00,LINE3-M02,L,0.999,High,299.6,309.5,1696,55.2,89,9803.8,9.9,,"Most likely Power Failure (PWF): the computed power output is 9804 W, which exceeds the 9000 W upper range and is also the top ML driver along with elevated torque and moderate tool wear.","Reduce spindle/drive load immediately by lowering the commanded feed/torque (or speed setpoint) to bring power back within 3500–9000 W, then rerun the batch only after power stabilizes in range.",High,False
+H08027,2026-07-29T07:36:00,LINE2-M02,H,0.001,Low,299.3,309.8,1859,39.1,94,7611.8,10.5,,,,,False
+L08026,2026-07-29T07:33:00,LINE3-M02,L,0.999,High,299.6,309.5,1696,55.2,89,9803.8,9.9,,"Most likely Power Failure (PWF): the computed power output is 9804 W, exceeding the 9000 W limit, and power is the top ML contributor; elevated torque and moderate tool wear are likely driving the high power demand.","Stop the machine and reduce cutting load to bring power below 9000 W (e.g., lower feed rate or depth of cut) before resuming production.",High,False
+H08027,2026-07-29T07:36:00,LINE2-M02,H,0.001,Low,299.3,309.8,1859,39.1,94,7611.8,10.5,,,,,False
+L08028,2026-07-29T07:39:00,LINE2-M01,L,0.998,High,302.9,313.0,1812,48.3,96,9165.0,10.1,,"Most likely Power Failure (PWF): the computed power output is 9165 W, exceeding the 9000 W upper limit, and this is also the top ML contributor. Elevated tool wear (96 min) and high torque (48.3 Nm) are amplifying the power draw, increasing failure risk even though tool-wear and overstrain thresholds are not yet met.","Reduce the machine load immediately by lowering the commanded rotational speed (RPM) to bring power output back below 9000 W, then recheck the power calculation before continuing the run.",High,False
+L08029,2026-07-29T07:42:00,LINE2-M01,L,0.02,Low,298.7,309.8,1168,29.1,98,3559.3,11.1,,,,,False
+H08030,2026-07-29T07:48:00,LINE2-M01,H,0.014,Low,300.8,310.1,1219,37.6,103,4799.8,9.3,,,,,False
+L08028,2026-07-29T07:39:00,LINE2-M01,L,0.998,High,302.9,313.0,1812,48.3,96,9165.0,10.1,,"Most consistent with a Power Failure (PWF): the computed power output is 9165 W, exceeding the 9000 W upper limit, and this is the top ML contributor. Elevated tool wear (96 min) and high torque likely contribute to the high power draw, increasing failure risk even though TWF/HDF/OSF thresholds are not met.",Reduce spindle load immediately by lowering rotational speed setpoint (or equivalent feed/load setting) to bring power output back below 9000 W before continuing the run.,High,False
+L08029,2026-07-29T07:42:00,LINE2-M01,L,0.02,Low,298.7,309.8,1168,29.1,98,3559.3,11.1,,,,,False
+H08030,2026-07-29T07:48:00,LINE2-M01,H,0.014,Low,300.8,310.1,1219,37.6,103,4799.8,9.3,,,,,False
+H08031,2026-07-29T07:51:00,LINE3-M02,H,0.0,Low,300.3,310.4,1607,47.3,108,7959.9,10.1,,,,,False
+L08032,2026-07-29T07:53:00,LINE2-M02,L,0.001,Low,301.0,310.8,1532,31.7,110,5085.7,9.8,,,,,False
+M08033,2026-07-29T07:58:00,LINE1-M02,M,0.004,Low,299.8,310.2,1296,50.5,113,6853.7,10.4,,,,,False
+L08034,2026-07-29T08:04:00,LINE2-M01,L,0.001,Low,298.4,308.8,1663,47.0,115,8185.0,10.4,,,,,False
+L08035,2026-07-29T08:10:00,LINE1-M01,L,0.001,Low,298.2,307.5,1632,37.8,117,6460.1,9.3,,,,,False
+M08036,2026-07-29T08:16:00,LINE2-M02,M,0.012,Low,297.2,306.7,1851,21.3,120,4128.7,9.5,,,,,False
+M08037,2026-07-29T08:18:00,LINE2-M02,M,0.005,Low,298.9,307.4,1491,39.0,123,6089.3,8.5,,,,,False
+L08038,2026-07-29T08:20:00,LINE1-M02,L,0.003,Low,299.0,311.4,1659,48.5,125,8425.9,12.4,,,,,False
+L08039,2026-07-29T08:22:00,LINE2-M02,L,0.002,Low,299.0,308.7,1555,27.7,127,4510.6,9.7,,,,,False
+L08040,2026-07-29T08:27:00,LINE3-M01,L,0.005,Low,303.6,314.2,1468,51.2,129,7870.9,10.6,,,,,False
+M08041,2026-07-29T08:31:00,LINE3-M01,M,0.003,Low,301.5,310.9,1379,37.7,132,5444.2,9.4,,,,,False
+L08042,2026-07-29T08:37:00,LINE3-M01,L,0.649,Medium,297.4,305.7,1852,46.4,134,8998.9,8.3,,"Most likely Power Failure (PWF): the computed power output is at the upper limit (8999 W, with PWF defined as >9000 W), and power is the strongest ML contributor, suggesting the process is operating very near an overload condition. Elevated tool wear (134 min) and high torque (46.4 Nm) are amplifying the power demand and increasing risk of crossing the failure threshold.","Reduce spindle load immediately by lowering the rotational speed setpoint (e.g., step down 5–10%) and recheck power output to keep it safely below 9000 W for the remainder of the batch.",Medium,False
+H08043,2026-07-29T08:39:00,LINE1-M02,H,0.001,Low,301.2,313.1,1572,35.4,139,5827.5,11.9,,,,,False
+H08044,2026-07-29T08:44:00,LINE1-M01,H,0.004,Low,302.4,313.5,1788,24.6,144,4606.1,11.1,,,,,False
+H08045,2026-07-29T08:46:00,LINE2-M02,H,0.001,Low,299.4,309.5,1402,48.1,149,7061.9,10.1,,,,,False
+H08046,2026-07-29T08:48:00,LINE3-M01,H,0.007,Low,300.3,311.7,1797,43.5,154,8185.9,11.4,,,,,False
+L08047,2026-07-29T08:51:00,LINE1-M01,L,0.003,Low,297.1,308.2,1580,37.7,156,6237.7,11.1,,,,,False
+L08042,2026-07-29T08:37:00,LINE3-M01,L,0.649,Medium,297.4,305.7,1852,46.4,134,8998.9,8.3,,"Most likely impending Power Failure (PWF): the computed power output is 8999 W, essentially at the upper PWF limit (9000 W), and power is the top ML driver. Elevated torque (46.4 Nm) and moderate tool wear (134 min) are contributing load factors but do not meet Tool Wear (TWF) or Overstrain (OSF) thresholds, and HDF is unlikely because rpm is high.","Reduce the machine load to bring power safely below the limit (e.g., lower spindle speed and/or feed rate by a small step) and monitor power to keep it under 9000 W for the remainder of the batch.",Medium,False
+H08043,2026-07-29T08:39:00,LINE1-M02,H,0.001,Low,301.2,313.1,1572,35.4,139,5827.5,11.9,,,,,False
+H08044,2026-07-29T08:44:00,LINE1-M01,H,0.004,Low,302.4,313.5,1788,24.6,144,4606.1,11.1,,,,,False
+H08045,2026-07-29T08:46:00,LINE2-M02,H,0.001,Low,299.4,309.5,1402,48.1,149,7061.9,10.1,,,,,False
+H08046,2026-07-29T08:48:00,LINE3-M01,H,0.007,Low,300.3,311.7,1797,43.5,154,8185.9,11.4,,,,,False
+L08047,2026-07-29T08:51:00,LINE1-M01,L,0.003,Low,297.1,308.2,1580,37.7,156,6237.7,11.1,,,,,False
+H08048,2026-07-29T08:53:00,LINE3-M02,H,1.0,High,301.4,312.0,1267,24.5,161,3250.7,10.6,,"Most evidence points to a Power Failure (PWF): the computed power output is 3251 W, below the 3500 W minimum, and power is the top ML contributor. Tool wear is elevated (161 min) and may be contributing to higher load and instability, but it is not yet in the tool-wear-failure range.",Stop the machine and verify/repair the spindle drive power delivery (check spindle motor/drive output and power supply settings) to restore power output into the 3500–9000 W range before continuing this batch.,High,False
+L08049,2026-07-29T08:56:00,LINE1-M02,L,0.011,Low,301.0,311.2,1898,25.0,163,4969.0,10.2,,,,,False
+H08048,2026-07-29T08:53:00,LINE3-M02,H,1.0,High,301.4,312.0,1267,24.5,161,3250.7,10.6,,"Most consistent with a Power Failure (PWF): the computed power output is low at 3251 W, below the 3500 W threshold, and power is the top ML driver. Tool wear is elevated (161 min) and torque is moderate, which likely contributes to inefficiency but does not yet meet tool-wear or overstrain failure thresholds.","Inspect and service the spindle/motor drive to restore power (e.g., check drive output/current limits, belt/coupling slip, and electrical supply) and verify power returns to ≥3500 W before continuing the batch.",High,False
+L08049,2026-07-29T08:56:00,LINE1-M02,L,0.011,Low,301.0,311.2,1898,25.0,163,4969.0,10.2,,,,,False
