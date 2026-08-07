@@ -40,6 +40,8 @@ function KpiGrid({ kpis }) {
 
 // ─── Alerts Table ─────────────────────────────────────────────────────────────
 function AlertsTable({ alerts, onSelect, selected }) {
+  const [currentPage, setCurrentPage] = useState(1)
+  const rowsPerPage = 10
   const compact = ['batch_id', 'timestamp', 'machine_id', 'product_type', 'risk_score', 'risk_level', 'deviated_params']
 
   if (!alerts.length) {
@@ -52,33 +54,66 @@ function AlertsTable({ alerts, onSelect, selected }) {
     )
   }
 
+  const totalPages = Math.ceil(alerts.length / rowsPerPage) || 1
+  const safePage = Math.min(currentPage, totalPages)
+  const startIndex = (safePage - 1) * rowsPerPage
+  const currentAlerts = alerts.slice(startIndex, startIndex + rowsPerPage)
+
   return (
-    <div className="data-table-wrap">
-      <table className="data-table">
-        <thead>
-          <tr>
-            {compact.map(col => <th key={col}>{col.replace(/_/g, ' ').toUpperCase()}</th>)}
-          </tr>
-        </thead>
-        <tbody>
-          {alerts.map(row => (
-            <tr
-              key={row.batch_id}
-              className={`row-${row.risk_level?.toLowerCase()} ${selected === row.batch_id ? 'selected' : ''}`}
-              onClick={() => onSelect(row.batch_id)}
-            >
-              {compact.map(col => (
-                <td key={col}>
-                  {col === 'risk_level' ? <RiskBadge level={row[col]} />
-                    : col === 'risk_score' ? (parseFloat(row[col]) || 0).toFixed(3)
-                    : col === 'timestamp' ? new Date(row[col]).toLocaleString()
-                    : (row[col] ?? '—')}
-                </td>
-              ))}
+    <div>
+      <div className="data-table-wrap">
+        <table className="data-table">
+          <thead>
+            <tr>
+              {compact.map(col => <th key={col}>{col.replace(/_/g, ' ').toUpperCase()}</th>)}
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {currentAlerts.map(row => (
+              <tr
+                key={row.batch_id}
+                className={`row-${row.risk_level?.toLowerCase()} ${selected === row.batch_id ? 'selected' : ''}`}
+                onClick={() => onSelect(row.batch_id)}
+              >
+                {compact.map(col => (
+                  <td key={col}>
+                    {col === 'risk_level' ? <RiskBadge level={row[col]} />
+                      : col === 'risk_score' ? (parseFloat(row[col]) || 0).toFixed(3)
+                      : col === 'timestamp' ? new Date(row[col]).toLocaleString()
+                      : (row[col] ?? '—')}
+                  </td>
+                ))}
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      {totalPages > 1 && (
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '12px 20px', borderTop: '1px solid var(--border-color)', backgroundColor: 'var(--bg-card)' }}>
+          <span style={{ fontSize: '0.85rem', color: 'var(--text-secondary)' }}>
+            Showing {startIndex + 1}-{Math.min(startIndex + rowsPerPage, alerts.length)} of {alerts.length}
+          </span>
+          <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
+            <button 
+              className="btn btn-secondary btn-sm" 
+              disabled={safePage === 1} 
+              onClick={() => setCurrentPage(p => Math.max(1, p - 1))}
+            >
+              Previous
+            </button>
+            <span style={{ fontSize: '0.85rem', margin: '0 8px' }}>
+              Page {safePage} of {totalPages}
+            </span>
+            <button 
+              className="btn btn-secondary btn-sm" 
+              disabled={safePage === totalPages} 
+              onClick={() => setCurrentPage(p => Math.min(totalPages, p + 1))}
+            >
+              Next
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   )
 }
